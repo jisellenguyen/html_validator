@@ -21,8 +21,13 @@ def validate_html(html):
     # will have to keep track of not just the 3 types of parentheses,
     # but arbitrary text located between the html tags.
 
+    try:
+        tags = _extract_tags(html)
+    except ValueError:
+        return False
+
     stack = []
-    for tag in _extract_tags(html):
+    for tag in tags:
         if not tag.startswith('</'):
             stack.append(tag)
         else:
