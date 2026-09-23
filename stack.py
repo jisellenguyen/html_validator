@@ -29,12 +29,16 @@ def balanced_parens(text):
     False
     '''
     stack = []
-    for char in text:
+    for i, char in enumerate(text):
+        #  print(f"i={i} char= {char} stack={stack}")
         if char in '([{':
+            # append = push
             stack.append(char)
         elif char in ')]}':
             if len(stack) == 0:
                 return False
+            # stack[-1] = top
+            # last thing pushed
             if (stack[-1] == '(' and char == ')') or \
                (stack[-1] == '[' and char == ']') or \
                (stack[-1] == '{' and char == '}'):
